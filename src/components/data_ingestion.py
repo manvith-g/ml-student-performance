@@ -6,6 +6,9 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 
+from src.components.data_transformation import DataTranformation
+from src.components.data_transformation import DataTransformationConfug
+
 @dataclass
 class DataIngestionConfig:
     train_data_path:str=os.path.join('artifacts','train.csv')
@@ -32,7 +35,8 @@ class DataIngestion:
             train_set.to_csv(self.ingestion_config.train_data_path,index=False,header=True)
             test_set.to_csv(self.ingestion_config.test_data_path,index=False,header=True)
 
-            logging.info("Ingestion of the data is completed")
+            logging.info("DataIngestion Part  of the data is completed")
+            logging.info("Next Part...")
             return(
                 self.ingestion_config.train_data_path,
                 self.ingestion_config.test_data_path
@@ -41,7 +45,9 @@ class DataIngestion:
            raise CustomException(e,sys)
 
 
-# lets chcek whether the file code is written correct
-if __name__=="__main__":
-    obj=DataIngestion()
-    obj.initiate_data_ingestion()
+# lets chcek whether the file code is written correct code updated for the 
+# if __name__=="__main__":
+#     obj=DataIngestion()
+#     train_path,test_path=obj.initiate_data_ingestion()
+#     obj2=DataTranformation()
+#     obj2.initiate_data_tranformation(train_path,test_path)
